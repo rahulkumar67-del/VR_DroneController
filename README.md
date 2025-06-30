@@ -118,7 +118,7 @@ git clone https://github.com/rahulkumar67-del/VR_DroneController.git
 ## 📌 Notes
 
 * Files like `.tif` textures above 100MB are excluded to comply with GitHub limits.
-* downlaod thsi tif file from this link ""
+* downlaod thsi tif file from this link "https://drive.google.com/drive/folders/1qdd-2y61_-pihAKN3OGlM869e8wJrx_L?usp=sharing"
 * Add this folder in this place "Assets\TerrainDemoScene_URP\Terrain"
 * For best performance, use Meta Quest 3 with link cable or AirLink.
 * To simulate focus input, a dummy script can override focus index.
