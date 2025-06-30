@@ -23,7 +23,7 @@ public class DamageEffect : MonoBehaviour
     public float maxBlur = 1f; // Maximum blur (Focus Distance)
 
     [Tooltip("No of coin from which player will get thier +50 health back ")][SerializeField] float BoostCoin;
-    [SerializeField] bool HealthEffecct = false;
+    [SerializeField] bool HealthEffect = false;
     [Tooltip("Time that player need to recovery from blood effect adb blur effect")][SerializeField] float RecoveryTime;
 
 
@@ -64,12 +64,12 @@ public class DamageEffect : MonoBehaviour
         No_of_coin = Coin.coininstance.totalCoins;
         FocusIndex = Neurodata.GetFocusIndex();
         // Check if health is below the max health
-        if (FocusIndex<5f && !HealthEffecct)
+        if (FocusIndex<5f && !HealthEffect)
         {
             
             Engage();
         }
-        if (HealthEffecct)
+        if (HealthEffect)
         {
             StartCoroutine(HealthDamageEffect());
             Engage();
@@ -83,7 +83,7 @@ public class DamageEffect : MonoBehaviour
     private IEnumerator HealthDamageEffect()
     {
         if (_vignette == null || _depthOfField == null) yield break;
-        if (GroundStation.Instance.OnAttack && HealthEffecct)
+        if (GroundStation.Instance.OnAttack && HealthEffect)
         {
             // Player is under attack, apply damage effects
             float vignetteIntensity = Mathf.Lerp(maxVignetteIntensity, minVignetteIntensity, playerHealth.CurrentHealth / Maxhealth);
@@ -92,7 +92,7 @@ public class DamageEffect : MonoBehaviour
             _vignette.intensity.Override(vignetteIntensity);
             _depthOfField.focusDistance.Override(blur);
         }
-        if (!GroundStation.Instance.OnAttack && HealthEffecct && playerHealth.CurrentHealth > MinHealth)
+        if (!GroundStation.Instance.OnAttack && HealthEffect && playerHealth.CurrentHealth > MinHealth)
         {
             // Gradually decrease the effects to zero
             float currentVignette = _vignette.intensity.value;
@@ -105,7 +105,7 @@ public class DamageEffect : MonoBehaviour
             _depthOfField.focusDistance.Override(currentBlur);
         }
 
-        if (playerHealth.CurrentHealth < MinHealth && HealthEffecct)
+        if (playerHealth.CurrentHealth < MinHealth && HealthEffect)
         {
             // Player is under attack, apply damage effects
             float vignetteIntensity = 0.5f;
@@ -126,15 +126,15 @@ public class DamageEffect : MonoBehaviour
    
     private void Engage()
     {
-        if (FocusIndex < 1f && !HealthEffecct && FocusIndex >0f)
+        if (FocusIndex < 1f && !HealthEffect && FocusIndex >0f)
         {
             GroundStation.Instance.Time_int = 5;    
         }
-        if (FocusIndex <2f  && !HealthEffecct && FocusIndex >1f)
+        if (FocusIndex <2f  && !HealthEffect && FocusIndex >1f)
         {
             GroundStation.Instance.Time_int = 3;
         }
-        if (FocusIndex < 10f && !HealthEffecct && FocusIndex > 2f)
+        if (FocusIndex < 10f && !HealthEffect && FocusIndex > 2f)
         {
             GroundStation.Instance.Time_int = 2;
         }
@@ -147,7 +147,7 @@ public class DamageEffect : MonoBehaviour
     }
 }
 
-//if (HealthEffecct)
+//if (HealthEffect)
 //{
 //    if (playerHealth.CurrentHealth < AlertHealth)
 //    {
